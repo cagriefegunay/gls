@@ -2,6 +2,8 @@ name: "Build .deb package"
 on:
   push:
     branches: [ "deb-test" ]
+  pull_request:
+    branches: [ "deb-test" ]
 
 jobs:
   deb-package:
