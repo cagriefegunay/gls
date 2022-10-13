@@ -25,6 +25,8 @@ jobs:
           mkdir -p .debpkg/usr/local/bin
           cp ./gls .debpkg/usr/local/bin/
           chmod +x .debpkg/usr/local/bin/gls
+      -
+        name: Build .deb
         uses: jiro4989/build-deb-action@v2
         with:
           package: gls
