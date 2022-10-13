@@ -1,0 +1,36 @@
+name: Build .deb package
+on:
+  push:
+    branches: [ "deb-test" ]
+
+jobs:
+  deb-package:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      -
+        name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.18.0'
+      - 
+        name: Build binary package for Debian package
+        run: |
+          go build -v ./cmd/gls.go
+          mkdir .debpkg
+          mkdir -p .debpkg/usr/local/bin
+          cp ./gls .debpkg/usr/local/bin/
+          chmod +x .debpkg/usr/local/bin/gls
+        uses: jiro4989/build-deb-action@v2
+        with:
+          package: gls
+          package_root: .debpkg
+          maintainer: 'Example Guy <example@example.com>'
+          version: ${{ github.ref }}
+          arch: 'amd64'
+          depends: 'golang-go'
+          desc: 'minimal file manager with terminal UI #Go'
