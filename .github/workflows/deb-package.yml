@@ -1,11 +1,9 @@
 name: "Build .deb package"
 on:
   push:
-    branches: [ "deb-test" ]
     tags:
       - 'v*'
   pull_request:
-    branches: [ "deb-test" ]
     tags:
       - 'v*'
 
