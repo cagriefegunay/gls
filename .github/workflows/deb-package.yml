@@ -34,7 +34,6 @@ jobs:
           package: gls
           package_root: .debpkg
           maintainer: 'Example Guy <example@example.com>'
-          version: ${{ github.ref }}
           arch: 'amd64'
           depends: 'golang-go'
           desc: 'minimal file manager with terminal UI #Go'
